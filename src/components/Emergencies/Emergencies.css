@@ -1,0 +1,46 @@
+.emergencies-container {
+  display: flex;
+}
+
+.emergencies-list {
+  width: 40%;
+  padding: 20px;
+}
+
+.emergency-counts {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  padding: 10px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.filter-buttons button:hover {
+  background-color: #ddd;
+}
+
+.emergency-items {
+  list-style: none;
+  padding: 0;
+}
+
+.emergency-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.emergencies-map {
+  width: 60%;
+  height: 600px;
+}
