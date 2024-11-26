@@ -6,7 +6,7 @@ export const useAxios = () => {
   const { token, refreshToken, setToken } = useAuth();
 
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://chubby-planets-battle.loca.lt/",
   });
 
   useEffect(() => {

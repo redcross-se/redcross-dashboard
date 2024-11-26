@@ -61,7 +61,7 @@ function Dashboard() {
   return (
     <div className="flex bg-indigo-50">
       <div className="dashboard">
-        <h1>Dashboardssssssssssssssssssssssssssss</h1>
+        <h1>Dashboard</h1>
         <ul>
           {emergencies.map((emergency) => (
             <li key={emergency.id}>
