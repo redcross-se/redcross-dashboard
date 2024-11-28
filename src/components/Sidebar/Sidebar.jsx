@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getMe } from "../../services/userService";
 
+
 const Sidebar = () => {
   const { logout } = useAuth();
   const [open, setOpen] = useState(true);
@@ -59,6 +60,40 @@ const Sidebar = () => {
           open={open}
           path="/analytics"
         />
+        <Option
+          Icon={FiBarChart}
+          title="Branches"
+          selected={selected}
+          setSelected={setSelected}
+          open={open}
+          path="/open-location"
+        />
+        <Option
+          Icon={FiBarChart}
+          title="Applications"
+          selected={selected}
+          setSelected={setSelected}
+          open={open}
+          path="/applications"
+        />
+        <Option
+          Icon={FiBarChart}
+          title="Donations"
+          selected={selected}
+          setSelected={setSelected}
+          open={open}
+          path="/donations"
+        />
+        <Option
+          Icon={FiBarChart}
+          title="Blood Requests"
+          selected={selected}
+          setSelected={setSelected}
+          open={open}
+          path="/blood-requests"
+        />
+
+
         <Option
           Icon={FiUsers}
           title="Users"

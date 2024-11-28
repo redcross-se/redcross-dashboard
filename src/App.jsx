@@ -14,6 +14,12 @@ import Analytics from "./components/Analytics/Analytics";
 import Users from "./components/Users/Users";
 import Settings from "./components/Settings/Settings";
 import Layout from "./components/Layout/Layout";
+import OpenLocation from "./components/OpenLocation/OpenLocation";
+import Application from "./components/Application/Application";
+import Donations from "./components/Donations/Donations";
+import BloodRequestForm from "./components/Request/BloodRequestForm";
+
+
 function App() {
   const { token } = useAuth();
   return (
@@ -30,6 +36,10 @@ function App() {
           <Route path="analytics" element={<Analytics />} />
           <Route path="users" element={<Users />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="open-location" element={<OpenLocation />} />
+          <Route path="applications" element={<Application/>} />
+          <Route path="donations" element={<Donations/>} />
+          <Route path="blood-requests" element={<BloodRequestForm/>} />
         </Route>
       </Routes>
     </Router>
