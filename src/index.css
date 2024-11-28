@@ -11,3 +11,25 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+.str-video__participant-details__name {
+  color: white;
+}
+
+.str-video__generic-menu--item {
+  color: white;
+}
+
+.str-video__video-placeholder {
+  background: #c0c0c0;
+  border-radius: inherit;
+}
+
+.str-video__video.str-video__video--tall {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.str-video__speaker-layout__participants-bar-buttons-wrapper {
+  display: none !important;
+}

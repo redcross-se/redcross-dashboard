@@ -5,16 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "vite preview",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.13.5",
-    "@mui/material": "^6.1.9",
-    "@mui/styled-engine-sc": "^6.1.9",
-    "@stream-io/video-react-sdk": "^1.7.23",
+    "@stream-io/video-react-sdk": "^1.7.26",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "axios": "^1.7.7",
     "framer-motion": "^11.11.17",
@@ -27,8 +24,9 @@
     "react-router-dom": "^7.0.1",
     "redcross-dashboard": "file:",
     "socket.io-client": "^4.8.1",
+    "stream-chat": "^8.45.2"
     "stream-chat": "^8.45.2",
-    "styled-components": "^6.1.13"
+    "stream-chat-react": "^12.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

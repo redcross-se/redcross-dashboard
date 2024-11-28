@@ -8,7 +8,7 @@ import {
 } from "react-icons/fi";
 import { AiFillAlert } from "react-icons/ai";
 import { motion } from "framer-motion";
-import RedCrossLogo from "../../assets/logo.svg";
+import RedCrossLogo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getMe } from "../../services/userService";

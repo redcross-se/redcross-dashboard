@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import "./Login.css";
-import Logo from "../../assets/logo.svg";
+import Logo from "../../assets/Logo.svg";
 import Background from "../../assets/redcross.jpg";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { axiosInstance } from "../../configs/axios.instance";
+
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

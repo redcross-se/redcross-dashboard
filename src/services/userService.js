@@ -11,10 +11,7 @@ export const getUserById = async (userId) => {
   }
 };
 
-export const getMe = async (invalidate = false) => {
-  if (localStorage.getItem("user") && !invalidate) {
-    return JSON.parse(localStorage.getItem("user"));
-  }
+export const getMe = async () => {
   const response = await axiosInstance.get("/auth/me");
   //save the user to local storage, so we don't have to fetch it again
   localStorage.setItem("user", JSON.stringify(response.data));
