@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FiBarChart,
   FiChevronsRight,
@@ -10,10 +10,18 @@ import { AiFillAlert } from "react-icons/ai";
 import { motion } from "framer-motion";
 import RedCrossLogo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { getMe } from "../../services/userService";
 
 const Sidebar = () => {
+  const { logout } = useAuth();
   const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("Dashboard");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getMe().then((data) => setUser(data));
+  }, []);
 
   return (
     <motion.nav
@@ -23,7 +31,7 @@ const Sidebar = () => {
         width: open ? "225px" : "fit-content",
       }}
     >
-      <TitleSection open={open} />
+      <TitleSection open={open} user={user} />
 
       <div className="space-y-1">
         <Option
@@ -67,6 +75,7 @@ const Sidebar = () => {
           open={open}
           path="/settings"
         />
+        <button onClick={logout}>Logout</button>
       </div>
 
       <ToggleClose open={open} setOpen={setOpen} />
@@ -125,7 +134,7 @@ const Option = ({ Icon, title, selected, setSelected, open, notifs, path }) => {
   );
 };
 
-const TitleSection = ({ open }) => {
+const TitleSection = ({ open, user }) => {
   return (
     <div className="mb-3 border-b border-slate-300 pb-3">
       <div className="flex cursor-pointer items-center justify-between rounded-md transition-colors hover:bg-slate-100">
@@ -138,8 +147,12 @@ const TitleSection = ({ open }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.125 }}
             >
-              <span className="block text-xs font-semibold">Username</span>
-              <span className="block text-xs text-slate-500">Volunteer</span>
+              <span className="block text-xs font-semibold">
+                {user?.fullName}
+              </span>
+              <span className="block text-xs text-slate-500">
+                {user?.role.charAt(0).toUpperCase() + user?.role.slice(1)}
+              </span>
             </motion.div>
           )}
         </div>

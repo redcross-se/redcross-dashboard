@@ -9,12 +9,11 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { useAuth } from "./context/authContext";
-import Emergencies from "./components/Emergencies/Emergencies";
+import Emergencies from "./pages/Emergencies";
 import Analytics from "./components/Analytics/Analytics";
 import Users from "./components/Users/Users";
 import Settings from "./components/Settings/Settings";
 import Layout from "./components/Layout/Layout";
-
 function App() {
   const { token } = useAuth();
   return (

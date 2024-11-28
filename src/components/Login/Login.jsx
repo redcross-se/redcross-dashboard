@@ -5,7 +5,7 @@ import "./Login.css";
 import Logo from "../../assets/logo.svg";
 import Background from "../../assets/redcross.jpg";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import { useAxios } from "../../hooks/useAxios";
+import { axiosInstance } from "../../configs/axios.instance";
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -13,9 +13,8 @@ function Login() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const axios = useAxios();
   const [error, setError] = useState(null);
-  const { setToken, setRefreshToken } = useAuth();
+  const { setToken, setRefreshToken, setStreamToken } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,11 +23,12 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/auth/signin", formData);
+      const response = await axiosInstance.post("/auth/signin", formData);
       setToken(response.data.token);
       console.log(response.data.token);
       setRefreshToken(response.data.refreshToken);
       console.log(response.data.refreshToken);
+      setStreamToken(response.data.streamToken);
       navigate("/dashboard");
     } catch (error) {
       setError(error.response.data?.error);
