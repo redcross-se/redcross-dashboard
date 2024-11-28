@@ -4,8 +4,12 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [streamToken, setStreamToken] = useState(null);
-  const [user, setUser] = useState(null);
+  const [streamToken, setStreamToken] = useState(
+    localStorage.getItem("streamToken") || null
+  );
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
   const [refreshToken, setRefreshToken] = useState(
     localStorage.getItem("refreshToken") || null
   );
@@ -20,7 +24,10 @@ export const AuthProvider = ({ children }) => {
     if (localStorage.getItem("streamToken") !== streamToken) {
       localStorage.setItem("streamToken", streamToken);
     }
-  }, [token, refreshToken, streamToken]);
+    if (localStorage.getItem("user") !== user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [token, refreshToken, streamToken, user]);
 
   const logout = () => {
     setToken(null);

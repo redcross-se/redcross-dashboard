@@ -5,58 +5,108 @@ import {
   FaPhoneSlash,
   FaClock,
 } from "react-icons/fa";
-import { useSocket } from "../../context/socketContext";
-import Peer from "peerjs";
+import {
+  StreamVideo,
+  StreamCall,
+  StreamVideoClient,
+  useStreamVideoClient,
+} from "@stream-io/video-react-sdk";
+import { useAuth } from "../../context/authContext";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
+import {
+  CallControls,
+  StreamTheme,
+  SpeakerLayout,
+  SpeakingWhileMutedNotification,
+  ToggleAudioPublishingButton,
+  RecordCallButton,
+  CancelCallButton,
+} from "@stream-io/video-react-sdk";
+import {
+  Channel,
+  Chat,
+  MessageInput,
+  MessageList,
+  Window,
+  useCreateChatClient,
+} from "stream-chat-react";
+import { StreamChat } from "stream-chat";
+
+import "stream-chat-react/dist/css/v2/index.css";
+function CustomCallControls() {
+  return (
+    <div className="str-video__call-controls">
+      <SpeakingWhileMutedNotification>
+        <ToggleAudioPublishingButton />
+      </SpeakingWhileMutedNotification>
+
+      <RecordCallButton />
+      <CancelCallButton />
+    </div>
+  );
+}
 
 function EmergencyInteraction({ activeEmergency, onBack }) {
-  const socket = useSocket();
-  const [peerId, setPeerId] = useState(null);
-  const [remotePeerId, setRemotePeerId] = useState(null);
-  const remoteVideoRef = useRef(null);
+  const [client, setClient] = useState(null);
+  const { user: authUser, streamToken } = useAuth();
+  const [userCall, setUserCall] = useState(null);
+  const [chatClient, setChatClient] = useState(null);
+  const [channel, setChannel] = useState(null);
+
   useEffect(() => {
-    if (!socket) return;
-
-    const peer = new Peer();
-    peer.on("open", (id) => {
-      setPeerId(id);
-      socket.emit("registerResponderPeer", {
-        peerId: id,
-        emergencyId: activeEmergency.id,
-      });
+    console.log(streamToken);
+    console.log("USER", authUser);
+    const client = StreamVideoClient.getOrCreateInstance({
+      apiKey: "3pkfpxv4cver",
+      user: {
+        id: authUser.id.toString(),
+      },
+      token: streamToken,
     });
-
-    peer.on("call", (call) => {
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .then((stream) => {
-          call.answer(stream);
-          call.on("stream", (remoteStream) => {
-            remoteVideoRef.current.srcObject = remoteStream;
-          });
-        })
-        .catch((err) => console.error("Failed to get local stream", err));
-    });
-
-    socket.on("peerId", ({ peerId }) => {
-      setRemotePeerId(peerId);
-    });
-
-    if (remotePeerId) {
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .then((stream) => {
-          const call = peer.call(remotePeerId, stream);
-          call.on("stream", (remoteStream) => {
-            remoteVideoRef.current.srcObject = remoteStream;
-          });
-        })
-        .catch((err) => console.error("Failed to get local stream", err));
-    }
-
-    return () => {
-      peer.destroy();
+    const initCall = async () => {
+      try {
+        if (userCall) return;
+        const call = client.call("default", activeEmergency.roomId);
+        await call.join();
+        await call.camera.disable();
+        setClient(client);
+        setUserCall(call);
+      } catch (error) {
+        console.error("Error joining call:", error);
+        setTimeout(() => {
+          initCall();
+        }, 1000);
+      }
     };
-  }, [socket, activeEmergency]);
+    initCall();
+  }, [streamToken, authUser, userCall]);
+
+  useEffect(() => {
+    if (!client || !userCall) return;
+
+    const initChat = async () => {
+      try {
+        const chatClient = StreamChat.getInstance("3pkfpxv4cver");
+        setChatClient(chatClient);
+        await chatClient.connectUser(
+          {
+            id: authUser.id.toString(),
+          },
+          streamToken
+        );
+        const channel = chatClient.channel("messaging", activeEmergency.roomId);
+        setChannel(channel);
+        await channel.create();
+      } catch (error) {
+        console.error("Error initializing chat:", error);
+      }
+    };
+
+    initChat();
+  }, [client, authUser, streamToken, activeEmergency.roomId]);
+
+  console.log("CHAT CLIENT", chatClient);
+  console.log("CHANNEL", channel);
 
   return (
     <div className="flex h-[100vh] overflow-hidden">
@@ -71,24 +121,30 @@ function EmergencyInteraction({ activeEmergency, onBack }) {
         <h2 className="text-xl font-bold mb-4">
           Accident #{activeEmergency.id}
         </h2>
-        <div className="flex items-center mb-4">
-          <img
-            src={activeEmergency.callerImage || ""}
-            alt="Caller"
-            className="w-16 h-16 rounded-full mr-4"
-          />
-          <div>
-            <p className="font-bold">{activeEmergency.userId}</p>
-            <div className="flex items-center">
-              <span className="mr-2">00:31</span>
-              <FaMicrophoneSlash className="text-gray-500 mr-2" />
-              <FaPhoneSlash className="text-red-500" />
-            </div>
-          </div>
+        <div className="h-[390px]">
+          {client && userCall && (
+            <StreamVideo client={client}>
+              <StreamTheme>
+                <StreamCall call={userCall}>
+                  <SpeakerLayout excludeLocalParticipant={true} />
+                  <CustomCallControls />
+                </StreamCall>
+              </StreamTheme>
+            </StreamVideo>
+          )}
         </div>
-        <p className="text-gray-500">
-          Camera or chat have not been initiated yet.
-        </p>
+        <div className="w-full overflow-y-scroll">
+          {chatClient && channel && (
+            <Chat client={chatClient}>
+              <Channel channel={channel}>
+                <Window>
+                  <MessageList />
+                  <MessageInput />
+                </Window>
+              </Channel>
+            </Chat>
+          )}
+        </div>
       </div>
 
       {/* Report Area */}
