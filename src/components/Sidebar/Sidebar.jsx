@@ -12,16 +12,23 @@ import RedCrossLogo from "../../assets/Logo.svg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getMe } from "../../services/userService";
-
+import { useEmergencyNotification } from "../../context/emergencyNotificationContext";
+import { TiLocation } from "react-icons/ti";
+import { FaWpforms } from "react-icons/fa6";
+import { MdAttachMoney } from "react-icons/md";
+import { MdBloodtype } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
 
 const Sidebar = () => {
   const { logout } = useAuth();
   const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("Dashboard");
   const [user, setUser] = useState(null);
-
+  const { emergencyCount } = useEmergencyNotification();
   useEffect(() => {
     getMe().then((data) => setUser(data));
+    const path = window.location.pathname.split("/")[1];
+    setSelected(path.toUpperCase().slice(0, 1) + path.slice(1));
   }, []);
 
   return (
@@ -49,7 +56,7 @@ const Sidebar = () => {
           selected={selected}
           setSelected={setSelected}
           open={open}
-          notifs={3}
+          notifs={emergencyCount === 0 ? null : emergencyCount}
           path="/emergencies"
         />
         <Option
@@ -61,15 +68,15 @@ const Sidebar = () => {
           path="/analytics"
         />
         <Option
-          Icon={FiBarChart}
+          Icon={TiLocation}
           title="Branches"
           selected={selected}
           setSelected={setSelected}
           open={open}
-          path="/open-location"
+          path="/branches"
         />
         <Option
-          Icon={FiBarChart}
+          Icon={FaWpforms}
           title="Applications"
           selected={selected}
           setSelected={setSelected}
@@ -77,7 +84,7 @@ const Sidebar = () => {
           path="/applications"
         />
         <Option
-          Icon={FiBarChart}
+          Icon={MdAttachMoney}
           title="Donations"
           selected={selected}
           setSelected={setSelected}
@@ -85,14 +92,13 @@ const Sidebar = () => {
           path="/donations"
         />
         <Option
-          Icon={FiBarChart}
+          Icon={MdBloodtype}
           title="Blood Requests"
           selected={selected}
           setSelected={setSelected}
           open={open}
           path="/blood-requests"
         />
-
 
         <Option
           Icon={FiUsers}
@@ -110,7 +116,15 @@ const Sidebar = () => {
           open={open}
           path="/settings"
         />
-        <button onClick={logout}>Logout</button>
+        <div className="absolute bottom-20 left-0 right-0 flex justify-center">
+          <button
+            onClick={logout}
+            className="flex items-center gap-2 rounded-md bg-red-500 px-4 py-2 text-white"
+          >
+            <CiLogout />
+            {open && "Logout"}
+          </button>
+        </div>
       </div>
 
       <ToggleClose open={open} setOpen={setOpen} />

@@ -21,7 +21,9 @@ const ApplicationTable = ({ status }) => {
       setError(null);
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/applicants/applications?status=${status}`
+          `${
+            import.meta.env.VITE_BASE_URL
+          }/applicants/applications?status=${status}`
         );
 
         // Assign random CV links to applicants
@@ -47,7 +49,7 @@ const ApplicationTable = ({ status }) => {
         applicant.id === id ? { ...applicant, status: "Accepted" } : applicant
       )
     );
-  
+
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BASE_URL}/applicants/applications/${id}/status`,
@@ -67,7 +69,7 @@ const ApplicationTable = ({ status }) => {
       );
     }
   };
-  
+
   const handleReject = async (id, name) => {
     // Optimistically update the status
     setApplicants((prevApplicants) =>
@@ -75,7 +77,7 @@ const ApplicationTable = ({ status }) => {
         applicant.id === id ? { ...applicant, status: "Rejected" } : applicant
       )
     );
-  
+
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_BASE_URL}/applicants/applications/${id}/status`,
@@ -95,7 +97,7 @@ const ApplicationTable = ({ status }) => {
       );
     }
   };
-  
+
   // Helper function to format the date
   const formatDate = (date) => {
     if (!date) return "N/A"; // Handle missing or null date
@@ -169,19 +171,27 @@ const ApplicationTable = ({ status }) => {
                   </a>
                 </td>
                 <td style={cellStyle}>
-              <button
-                onClick={() => handleAccept(applicant.id, applicant.name)}
-                style={acceptButtonStyle}
-              >
-                Accept
-              </button>
-              <button
-                onClick={() => handleReject(applicant.id, applicant.name)}
-                style={rejectButtonStyle}
-              >
-                Reject
-              </button>
-            </td>
+                  {applicant.status === "Pending" && (
+                    <>
+                      <button
+                        onClick={() =>
+                          handleAccept(applicant.id, applicant.name)
+                        }
+                        style={acceptButtonStyle}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleReject(applicant.id, applicant.name)
+                        }
+                        style={rejectButtonStyle}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

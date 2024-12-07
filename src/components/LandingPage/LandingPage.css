@@ -1,0 +1,502 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h1, h2, h3 {
+    margin-bottom: 15px;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #e31c24;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    font-family: Arial, sans-serif;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border: 3px solid white;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.navbar {
+    background-color: #e31c24;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    font-family: Arial, sans-serif;
+    position: fixed; /* Makes the navbar fixed at the top */
+    top: 0; /* Sticks the navbar to the top of the viewport */
+    width: 100%; /* Ensures the navbar spans the full width of the page */
+    z-index: 1000; /* Keeps the navbar above other elements */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for better visibility */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border: 3px solid white;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjusts the space between nav-links and the donate button */
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 15px; /* Adjusts spacing between navigation items */
+    font-size: 16px;
+}
+
+.nav-links li {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.donate-btn {
+    background-color: white;
+    color: #e31c24;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.donate-btn:hover {
+    background-color: #f7c6c9;
+}
+
+
+body {
+    margin-top: 80px; /* Adjust this value based on the height of your navbar */
+}
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    font-size: 16px;
+}
+
+.nav-links li {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.donate-btn {
+    background-color: white;
+    color: #e31c24;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.donate-btn:hover {
+    background-color: #f7c6c9;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #f8f9fa;
+    padding: 140px 20px 60px; /* Increased top padding to create space below the navbar */
+    text-align: center; /* Center-aligns text */
+    position: relative;
+}
+
+.hero-text {
+    max-width: 700px; /* Centers the text and sets a width constraint */
+    margin-bottom: 40px; /* Adds spacing between the text and the image */
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    color: #e31c24;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px; /* Spacing between title and subtitle */
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 1200px; 
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* Crisis Updates */
+.crisis-updates {
+    background-color: #fff;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+}
+
+.crisis-updates h2 {
+    font-size: 2.5rem;
+    color: #e31c24;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.crisis-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.crisis-image {
+    width: 40%; /* Adjust the image size */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.crisis-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.crisis-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.update-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.update-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.update-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Response Section */
+.response-section {
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    margin: 40px 20px;
+}
+
+.response-section h2 {
+    font-size: 2.5rem;
+    color: #e31c24;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.response-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.response-list {
+    margin-top: 20px;
+}
+
+.response-item {
+    margin-bottom: 20px;
+}
+
+.response-item strong {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.response-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-left: 20px; /* Slight indent for readability */
+}
+
+.response-image {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.response-image img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.help-section {
+    background-color: #fff;
+    padding: 50px 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.help-section h2 {
+    font-size: 2.5rem;
+    color: #e31c24;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.help-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.help-card {
+    flex: 1;
+    max-width: 300px;
+    border: 2px solid #e31c24;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.help-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.help-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    display: block; /* Ensures proper layout */
+}
+
+.help-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.help-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.help-card button {
+    background-color: #fff;
+    color: #e31c24;
+    border: 2px solid #e31c24;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.help-card button:hover {
+    background-color: #e31c24;
+    color: #fff;
+}
+.education-section {
+    position: relative;
+    background-image: url('src/assets/image.jpeg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px; /* Adjust the height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.education-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+.education-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.discover-btn {
+    background-color: white;
+    color: #e31c24;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.discover-btn:hover {
+    background-color: #e31c24;
+    color: white;
+}
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 20px; /* Increased padding for spacing */
+    margin-top: 40px; /* Adds distance from the education section */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+    gap: 20px;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: underline; /* Underlines "Contact Information" */
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.social-media h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.app-download {
+    text-align: center;
+}
+
+.app-store-btn,
+.google-play-btn {
+    background-color: #e31c24;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.app-store-btn:hover,
+.google-play-btn:hover {
+    background-color: #f55;
+}

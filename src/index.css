@@ -33,3 +33,17 @@ body {
 .str-video__speaker-layout__participants-bar-buttons-wrapper {
   display: none !important;
 }
+
+/* ::-webkit-scrollbar {
+  width: 2px;
+  padding: 8px;
+} */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 19px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

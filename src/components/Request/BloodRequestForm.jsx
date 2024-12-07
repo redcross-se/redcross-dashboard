@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import bloodImage from "../../assets/Blood-1.png";
-import { set } from "lodash";
+import { axiosInstance } from "../../configs/axios.instance";
 
-const BloodRequestForm = () => {
-  const [selectedBloodType, setSelectedBloodType] = useState(null);
+export default function BloodRequestForm() {
+  const [selectedBloodTypes, setSelectedBloodTypes] = useState([]);
   const [selectedUrgency, setSelectedUrgency] = useState(null);
   const [hospitalName, setHospitalName] = useState("");
   const [message, setMessage] = useState("");
@@ -11,13 +11,28 @@ const BloodRequestForm = () => {
   const bloodTypes = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
   const urgencyLevels = ["Not Urgent", "Moderate", "Urgent", "Very Urgent"];
 
-  const handleSubmit = () => {
-    setMessage("successs");
-    
-    setSelectedBloodType(null);
-    setSelectedUrgency(null);
-    setHospitalName("");
-    setTimeout(() => setMessage(""), 3000);
+  const handleSubmit = async () => {
+    try {
+      const response = await axiosInstance.post("/requests/add-request", {
+        hospitalName,
+        bloodType: JSON.stringify(selectedBloodTypes),
+        urgencyLevel: selectedUrgency,
+      });
+      setMessage("successs");
+    } catch (error) {
+      setSelectedBloodTypes([]);
+      setSelectedUrgency(null);
+      setHospitalName("");
+      setTimeout(() => setMessage(""), 3000);
+    }
+  };
+
+  const handleBloodTypeSelection = (type) => {
+    setSelectedBloodTypes((prevSelected) =>
+      prevSelected.includes(type)
+        ? prevSelected.filter((t) => t !== type)
+        : [...prevSelected, type]
+    );
   };
 
   return (
@@ -26,10 +41,16 @@ const BloodRequestForm = () => {
       <div className="w-2/3">
         <h1 className="text-2xl font-bold mb-6">Fill a Blood Request</h1>
         {message !== "" && (
-          <div className={`p-4 rounded-md text-lg font-semibold ${
-            message === "successs" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-          }`}>
-            {message === "successs" ? "Request is created" : "Request is not created"}
+          <div
+            className={`p-4 rounded-md text-lg font-semibold ${
+              message === "successs"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
+            {message === "successs"
+              ? "Request is created"
+              : "Request is not created"}
           </div>
         )}
 
@@ -49,14 +70,16 @@ const BloodRequestForm = () => {
 
         {/* Blood Type Selection */}
         <div className="mb-6">
-          <label className="block text-lg font-semibold mb-2">Blood Type:</label>
+          <label className="block text-lg font-semibold mb-2">
+            Blood Type:
+          </label>
           <div className="grid grid-cols-4 gap-3">
             {bloodTypes.map((type) => (
               <button
                 key={type}
-                onClick={() => setSelectedBloodType(type)}
+                onClick={() => handleBloodTypeSelection(type)}
                 className={`p-3 text-lg font-medium rounded-md border ${
-                  selectedBloodType === type
+                  selectedBloodTypes.includes(type)
                     ? "bg-red-500 text-white border-red-500"
                     : "bg-white text-red-500 border-red-500"
                 } hover:bg-red-100`}
@@ -110,6 +133,4 @@ const BloodRequestForm = () => {
       </div>
     </div>
   );
-};
-
-export default BloodRequestForm;
+}

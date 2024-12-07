@@ -4,7 +4,7 @@ import ApplicationTable from "./ApplicantsTable";
 
 function Application() {
 
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("All");
 
 
 
