@@ -3,16 +3,16 @@ import "./LandingPage.css";
 import { Link } from "react-router-dom";
 
 // Importing images
-import RedCrossLogo from "src/assets/RedCrossLogo.png";
-import HeroImage from "src/assets/redcross.jpg";
-import CrisisImage from "src/assets/cq5dam.thumbnail.cropped.750.422.jpeg";
-import ResponseImage from "src/assets/LRC_Report-Pic-3-1-e1727879299525.jpeg";
-import VolunteerIcon from "src/assets/volunteer.svg";
-import MoneyDonationIcon from "src/assets/Screenshot 2024-11-26 at 8.04.00 PM.png";
-import BloodDonationIcon from "src/assets/donate-blood-bag-icon-in-red-and-black-color-vector.jpg";
-import InstagramLogo from "src/assets/Instagram_logo_2022.svg.png";
-import YouTubeLogo from "src/assets/rounded-square-red-and-white-youtube-logo-with-thick-white-border-and-long-shadow-on-a-transparent-background-free-png.webp";
-import FacebookLogo from "src/assets/facebook-logo-2019.png";
+import RedCrossLogo from "../../assets/RedCrossLogo.png";
+import HeroImage from "../../assets/redcross.jpg";
+import CrisisImage from "../../assets/cq5dam.thumbnail.cropped.750.422.jpeg";
+import ResponseImage from "../../assets/LRC_Report-Pic-3-1-e1727879299525.jpeg";
+import VolunteerIcon from "../../assets/volunteer.svg";
+import MoneyDonationIcon from "../../assets/Screenshot 2024-11-26 at 8.04.00 PM.png";
+import BloodDonationIcon from "../../assets/donate-blood-bag-icon-in-red-and-black-color-vector.jpg";
+import InstagramLogo from "../../assets/Instagram_logo_2022.svg.png";
+import YouTubeLogo from "../../assets/rounded-square-red-and-white-youtube-logo-with-thick-white-border-and-long-shadow-on-a-transparent-background-free-png.webp";
+import FacebookLogo from "../../assets/facebook-logo-2019.png";
 
 function LandingPage() {
   return (
