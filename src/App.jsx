@@ -19,6 +19,7 @@ import Application from "./components/Application/Application";
 import Donations from "./components/Donations/Donations";
 import BloodRequestForm from "./components/Request/BloodRequestForm";
 import LandingPage from "./components/LandingPage/LandingPage";
+import Content from "./components/Content/Content";
 import {
   EmergencyNotificationProvider,
   useEmergencyNotification,
@@ -62,6 +63,7 @@ function App() {
           <Route path="applications" element={<Application />} />
           <Route path="donations" element={<Donations />} />
           <Route path="blood-requests" element={<BloodRequestForm />} />
+          <Route path="content" element={<Content />} />
         </Route>
       </Routes>
       <Snackbar

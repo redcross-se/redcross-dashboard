@@ -18,6 +18,7 @@ import { FaWpforms } from "react-icons/fa6";
 import { MdAttachMoney } from "react-icons/md";
 import { MdBloodtype } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
+import { MdCastForEducation } from "react-icons/md";
 
 const Sidebar = () => {
   const { logout } = useAuth();
@@ -78,6 +79,14 @@ const Sidebar = () => {
               setSelected={setSelected}
               open={open}
               path="/applications"
+            />
+            <Option
+              Icon={MdCastForEducation}
+              title="Content"
+              selected={selected}
+              setSelected={setSelected}
+              open={open}
+              path="/content"
             />
           </>
         )}
