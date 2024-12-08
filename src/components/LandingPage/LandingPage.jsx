@@ -2,13 +2,25 @@ import React from "react";
 import "./LandingPage.css";
 import { Link } from "react-router-dom";
 
+// Importing images
+import RedCrossLogo from "src/assets/RedCrossLogo.png";
+import HeroImage from "src/assets/redcross.jpg";
+import CrisisImage from "src/assets/cq5dam.thumbnail.cropped.750.422.jpeg";
+import ResponseImage from "src/assets/LRC_Report-Pic-3-1-e1727879299525.jpeg";
+import VolunteerIcon from "src/assets/volunteer.svg";
+import MoneyDonationIcon from "src/assets/Screenshot 2024-11-26 at 8.04.00 PM.png";
+import BloodDonationIcon from "src/assets/donate-blood-bag-icon-in-red-and-black-color-vector.jpg";
+import InstagramLogo from "src/assets/Instagram_logo_2022.svg.png";
+import YouTubeLogo from "src/assets/rounded-square-red-and-white-youtube-logo-with-thick-white-border-and-long-shadow-on-a-transparent-background-free-png.webp";
+import FacebookLogo from "src/assets/facebook-logo-2019.png";
+
 function LandingPage() {
   return (
     <div className="landing-page">
       {/* Navbar */}
       <header className="navbar">
         <div className="logo">
-          <img src="src/assets/RedCrossLogo.png" alt="Red Cross Logo" />
+          <img src={RedCrossLogo} alt="Red Cross Logo" />
           <span>Lebanese Red Cross - الدفاع المدني اللبناني</span>
         </div>
         <div className="nav-actions">
@@ -36,7 +48,7 @@ function LandingPage() {
           </p>
         </div>
         <img
-          src="src/assets/redcross.jpg"
+          src={HeroImage}
           alt="Red Cross Volunteers"
           className="hero-image"
         />
@@ -46,11 +58,7 @@ function LandingPage() {
       <section className="crisis-updates">
         <h2>Current Crisis Updates</h2>
         <div className="crisis-content">
-          <img
-            src="src/assets/cq5dam.thumbnail.cropped.750.422.jpeg"
-            alt="Crisis Scene"
-            className="crisis-image"
-          />
+          <img src={CrisisImage} alt="Crisis Scene" className="crisis-image" />
           <div className="crisis-text">
             <p>
               Since September 17th, the conflict in Lebanon has intensified
@@ -112,10 +120,7 @@ function LandingPage() {
           and healthcare services.
         </p>
         <div className="response-image">
-          <img
-            src="src/assets/LRC_Report-Pic-3-1-e1727879299525.jpeg"
-            alt="Relief Effort"
-          />
+          <img src={ResponseImage} alt="Relief Effort" />
         </div>
       </section>
 
@@ -124,7 +129,7 @@ function LandingPage() {
         <div className="help-options">
           <div className="help-card">
             <img
-              src="src/assets/volunteer.svg"
+              src={VolunteerIcon}
               alt="Volunteer Icon"
               className="help-icon"
             />
@@ -137,7 +142,7 @@ function LandingPage() {
           </div>
           <div className="help-card">
             <img
-              src="src/assets/Screenshot 2024-11-26 at 8.04.00 PM.png"
+              src={MoneyDonationIcon}
               alt="Money Donation Icon"
               className="help-icon"
             />
@@ -150,7 +155,7 @@ function LandingPage() {
           </div>
           <div className="help-card">
             <img
-              src="src/assets/donate-blood-bag-icon-in-red-and-black-color-vector.jpg"
+              src={BloodDonationIcon}
               alt="Blood Donation Icon"
               className="help-icon"
             />
@@ -187,27 +192,21 @@ function LandingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src="src/assets/Instagram_logo_2022.svg.png"
-                  alt="Instagram"
-                />
+                <img src={InstagramLogo} alt="Instagram" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src="src/assets/rounded-square-red-and-white-youtube-logo-with-thick-white-border-and-long-shadow-on-a-transparent-background-free-png.webp"
-                  alt="YouTube"
-                />
+                <img src={YouTubeLogo} alt="YouTube" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src="src/assets/facebook-logo-2019.png" alt="Facebook" />
+                <img src={FacebookLogo} alt="Facebook" />
               </a>
             </div>
           </div>
