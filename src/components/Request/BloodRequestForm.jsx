@@ -14,16 +14,18 @@ export default function BloodRequestForm() {
   const handleSubmit = async () => {
     try {
       const response = await axiosInstance.post("/requests/add-request", {
-        hospitalName,
-        bloodType: JSON.stringify(selectedBloodTypes),
-        urgencyLevel: selectedUrgency,
+        hospital: hospitalName,
+        bloodTypes: selectedBloodTypes,
+        urgency: selectedUrgency,
       });
       setMessage("successs");
     } catch (error) {
       setSelectedBloodTypes([]);
       setSelectedUrgency(null);
       setHospitalName("");
+      setMessage("Request failed. Please try again.");
       setTimeout(() => setMessage(""), 3000);
+      console.error("Error adding request:", error);
     }
   };
 

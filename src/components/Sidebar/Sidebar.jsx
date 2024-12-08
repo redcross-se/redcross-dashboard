@@ -22,7 +22,7 @@ import { CiLogout } from "react-icons/ci";
 const Sidebar = () => {
   const { logout } = useAuth();
   const [open, setOpen] = useState(true);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("emergencies");
   const [user, setUser] = useState(null);
   const { emergencyCount } = useEmergencyNotification();
   useEffect(() => {
@@ -43,14 +43,6 @@ const Sidebar = () => {
 
       <div className="space-y-1">
         <Option
-          Icon={FiHome}
-          title="Dashboard"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
-          path="/dashboard"
-        />
-        <Option
           Icon={AiFillAlert}
           title="Emergencies"
           selected={selected}
@@ -67,22 +59,28 @@ const Sidebar = () => {
           open={open}
           path="/analytics"
         />
-        <Option
-          Icon={TiLocation}
-          title="Branches"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
-          path="/branches"
-        />
-        <Option
-          Icon={FaWpforms}
-          title="Applications"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
-          path="/applications"
-        />
+        {(user?.role?.toLowerCase() === "admin" ||
+          user?.role?.toLowerCase() === "supervisor") && (
+          <>
+            <Option
+              Icon={TiLocation}
+              title="Branches"
+              selected={selected}
+              setSelected={setSelected}
+              open={open}
+              path="/branches"
+            />
+
+            <Option
+              Icon={FaWpforms}
+              title="Applications"
+              selected={selected}
+              setSelected={setSelected}
+              open={open}
+              path="/applications"
+            />
+          </>
+        )}
         <Option
           Icon={MdAttachMoney}
           title="Donations"
@@ -100,14 +98,17 @@ const Sidebar = () => {
           path="/blood-requests"
         />
 
-        <Option
-          Icon={FiUsers}
-          title="Users"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
-          path="/users"
-        />
+        {(user?.role?.toLowerCase() === "admin" ||
+          user?.role?.toLowerCase() === "supervisor") && (
+          <Option
+            Icon={FiUsers}
+            title="Users"
+            selected={selected}
+            setSelected={setSelected}
+            open={open}
+            path="/users"
+          />
+        )}
         <Option
           Icon={FiSettings}
           title="Settings"
