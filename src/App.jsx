@@ -46,15 +46,14 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={token ? <Navigate to="/dashboard" /> : <LandingPage />}
+          element={token ? <Navigate to="/emergencies" /> : <LandingPage />}
         />
         <Route path="/signup" element={<SignUp />} />
         <Route
           path="/login"
-          element={token ? <Navigate to="/dashboard" /> : <Login />}
+          element={token ? <Navigate to="/emergencies" /> : <Login />}
         />
         <Route path="/" element={token ? <Layout /> : <Navigate to="/login" />}>
-          <Route path="dashboard" element={<Dashboard />} />
           <Route path="emergencies" element={<Emergencies />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="users" element={<Users />} />
